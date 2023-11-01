@@ -2,27 +2,38 @@ function linkedList() {
   const list = {
     head: null,
     tail: null,
-    size: null,
+    size: 0,
   };
 
   const append = (value) => {
     const node = createNode(value);
-    if (list.size === null) {
+    if (list.size === 0) {
       list.head = node;
       list.tail = node;
-      list.size = 0;
     } else {
       list.tail.next = node;
       list.tail = node;
-      list.size += 1;
     }
+    list.size += 1;
   };
 
-  const head = () => list.head;
-  const tail = () => list.tail;
-  const size = () => list.size;
+  const prepend = (value) => {
+    const node = createNode(value);
+    if (list.size === 0) {
+      list.head = node;
+      list.tail = node;
+    } else {
+      node.next = list.head;
+      list.head = node;
+    }
+    list.size += 1;
+  };
 
-  return { append, head, tail, size };
+  const getHead = () => list.head;
+  const getTail = () => list.tail;
+  const getSize = () => list.size;
+
+  return { append, prepend, getHead, getTail, getSize };
 }
 
 function createNode(data = null, next = null) {
@@ -30,9 +41,7 @@ function createNode(data = null, next = null) {
 }
 
 const list = linkedList();
-list.append('a');
 list.append('b');
 list.append('c');
-console.log(list.head().data);
-console.log(list.head().next.data);
-console.log(list.tail().data);
+list.append('d');
+list.prepend('a');
