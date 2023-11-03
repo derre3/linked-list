@@ -66,7 +66,26 @@ function linkedList() {
     return false;
   };
 
-  return { append, prepend, getHead, getTail, getSize, at, pop, contains };
+  const find = (value) => {
+    let node = list.head;
+    for (let i = 1; i < list.size; i++) {
+      if (node.data === value) return i;
+      node = node.next;
+    }
+    return null;
+  };
+
+  return {
+    append,
+    prepend,
+    getHead,
+    getTail,
+    getSize,
+    at,
+    pop,
+    contains,
+    find,
+  };
 }
 
 function createNode(data = null, index = null, next = null) {
