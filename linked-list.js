@@ -69,7 +69,7 @@ function linkedList() {
   const find = (value) => {
     let node = list.head;
     for (let i = 1; i < list.size; i++) {
-      if (node.data === value) return i;
+      if (node.data === value) return node.index;
       node = node.next;
     }
     return null;
