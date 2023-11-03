@@ -53,8 +53,7 @@ function linkedList() {
 
   const pop = () => {
     let node = at(list.size - 1);
-    list.size -= 1;
-    list.tail = node;
+    list.tail = null;
     node.next = null;
   };
 
@@ -75,6 +74,19 @@ function linkedList() {
     }
     return null;
   };
+  const toString = () => {
+    let node = list.head;
+    let result = '';
+    // index starts with 0 in case the list is empty,
+    // skipping the loop and just returning null
+    for (let i = 0; i < list.size; i++) {
+      result += `( ${node.data} )  => `;
+      node = node.next;
+    }
+    // null will be added at the end regardless
+    result += '( null )';
+    return result;
+  };
 
   return {
     append,
@@ -85,6 +97,7 @@ function linkedList() {
     at,
     pop,
     contains,
+    toString,
     find,
   };
 }
@@ -92,11 +105,3 @@ function linkedList() {
 function createNode(data = null, index = null, next = null) {
   return { data, index, next };
 }
-
-const list = linkedList();
-list.append('b');
-list.append('c');
-list.append('d');
-list.prepend('a');
-console.log(list.getSize());
-console.log(list.getTail().index);
