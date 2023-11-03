@@ -45,7 +45,7 @@ function linkedList() {
 
   const at = (index) => {
     let node = list.head;
-    for (let i = 1; i < index; i++) {
+    while (node.index < index) {
       node = node.next;
     }
     return node;
