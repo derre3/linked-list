@@ -32,20 +32,11 @@ function linkedList() {
       list.head = node;
     }
     list.size += 1;
-    resetIndex();
   };
 
-  const resetIndex = () => {
+  const at = (targetIndex) => {
     let node = list.head;
-    for (let i = 1; i <= list.size; i++) {
-      node.index = i;
-      node = node.next;
-    }
-  };
-
-  const at = (index) => {
-    let node = list.head;
-    while (node.index < index) {
+    for (let i = 1; i < targetIndex; i++) {
       node = node.next;
     }
     return node;
@@ -69,12 +60,13 @@ function linkedList() {
 
   const find = (value) => {
     let node = list.head;
-    for (let i = 1; i < list.size; i++) {
-      if (node.data === value) return node.index;
+    for (let i = 1; i <= list.size; i++) {
+      if (node.data === value) return i;
       node = node.next;
     }
     return null;
   };
+
   const toString = () => {
     let node = list.head;
     let result = '';
@@ -103,6 +95,6 @@ function linkedList() {
   };
 }
 
-function createNode(data = null, index = null, next = null) {
-  return { data, index, next };
+function createNode(data = null, next = null) {
+  return { data, next };
 }
