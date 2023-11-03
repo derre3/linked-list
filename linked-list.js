@@ -52,9 +52,8 @@ function linkedList() {
   };
 
   const pop = () => {
-    let node = at(list.size - 1);
+    list.size -= 1;
     list.tail = null;
-    node.next = null;
   };
 
   const contains = (value) => {
