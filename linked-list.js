@@ -19,7 +19,6 @@ function linkedList() {
       list.tail = node;
     }
     list.size += 1;
-    node.index = list.size;
   };
 
   const prepend = (value) => {
@@ -81,6 +80,20 @@ function linkedList() {
     return result;
   };
 
+  const insertAt = (value, index) => {
+    if (index <= 1) {
+      prepend(value);
+    } else if (index > list.size) {
+      append(value);
+    } else {
+      const newNode = createNode(value);
+      const nodeBeforeIndex = at(index - 1);
+      newNode.next = nodeBeforeIndex.next;
+      nodeBeforeIndex.next = newNode;
+      list.size += 1;
+    }
+  };
+
   return {
     append,
     prepend,
@@ -92,6 +105,7 @@ function linkedList() {
     contains,
     toString,
     find,
+    insertAt,
   };
 }
 
