@@ -9,11 +9,15 @@ function linkedList() {
   const getTail = () => list.tail;
   const getSize = () => list.size;
 
+  const _emptyListAppend = (node) => {
+    list.head = node;
+    list.tail = node;
+  };
+
   const append = (value) => {
     const node = createNode(value);
     if (list.size === 0) {
-      list.head = node;
-      list.tail = node;
+      _emptyListAppend(node);
     } else {
       list.tail.next = node;
       list.tail = node;
@@ -24,8 +28,7 @@ function linkedList() {
   const prepend = (value) => {
     const node = createNode(value);
     if (list.size === 0) {
-      list.head = node;
-      list.tail = node;
+      _emptyListAppend(node);
     } else {
       node.next = list.head;
       list.head = node;
@@ -94,6 +97,20 @@ function linkedList() {
     }
   };
 
+  const removeAt = (index) => {
+    if (index <= 1) {
+      list.head = list.head.next;
+      list.size -= 1;
+    } else if (index >= list.size) {
+      pop();
+    } else {
+      const node = at(index - 1);
+      // jump over the index node
+      node.next = node.next.next;
+      list.size -= 1;
+    }
+  };
+
   return {
     append,
     prepend,
@@ -106,6 +123,7 @@ function linkedList() {
     toString,
     find,
     insertAt,
+    removeAt,
   };
 }
 
